@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <SidebarPage :isSidebar="isSidebarEnable" />
+    <SidebarPage :isSidebar="isSidebarEnable" :iconData = "sidebarIcondata"/>
     <div class="main-content">
       <NavbarPage :isSidebar="isSidebarEnable" @toggleSidebar="toggleSidebar" />
       <div class="content">
@@ -19,6 +19,36 @@ import { get_django_data } from '@/utils/api';
 
 let isSidebarEnable = ref(true);
 const message = ref('Loading...');
+let sidebarIcondata = ref([
+  {
+  name: 'Home',
+  icon: 'home',
+  },
+  {
+  name: 'Chat-Box',
+  icon: 'home',
+  },
+  {
+  name: 'Weather Data',
+  icon: 'home',
+  },
+  {
+  name: 'Web Settings',
+  icon: 'home',
+  },
+  {
+  name: 'Web Settings',
+  icon: 'home',
+  },
+  {
+  name: 'Web Settings',
+  icon: 'home',
+  },
+  {
+  name: 'Web Settings',
+  icon: 'home',
+  }
+])
 
 async function callable() {
   try {
