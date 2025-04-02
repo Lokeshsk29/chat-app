@@ -1,15 +1,19 @@
 <template>
-    <div class="navbar">
-      <button @click="toggleSidebar">
-        {{ isSidebar ? 'Collapse Sidebar' : 'Expand Sidebar' }}
-      </button>
-      <div class="profile">
+  <div class="navbar">
+    
+  </div>
+    <!-- <div class="navbar"> -->
+      
+        <!-- <h1>My Website</h1> -->
+      
+      <!-- <div class="profile">
         <img
           src="https://ui-avatars.com/api/?name=John+Doe&size=48&background=random&color=fff"
           alt="Profile Picture"
-        />
+        ></img>
+        </div>
       </div>
-    </div>
+    </div> -->
   </template>
   
   <script setup>

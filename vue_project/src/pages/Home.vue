@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <SidebarPage :isSidebar="isSidebarEnable" :iconData = "sidebarIcondata"/>
+    <SidebarPage :iconData = "sidebarIcondata"/>
     <div class="main-content">
       <NavbarPage :isSidebar="isSidebarEnable" @toggleSidebar="toggleSidebar" />
       <div class="content">
@@ -17,7 +17,6 @@ import SidebarPage from './SidebarPage.vue';
 import NavbarPage from './NavbarPage.vue';
 import { get_django_data } from '@/utils/api';
 
-let isSidebarEnable = ref(true);
 const message = ref('Loading...');
 let sidebarIcondata = ref([
   {
@@ -59,9 +58,7 @@ async function callable() {
   }
 }
 
-function toggleSidebar() {
-  isSidebarEnable.value = !isSidebarEnable.value;
-}
+
 
 onMounted(() => {
   callable();
@@ -71,7 +68,7 @@ onMounted(() => {
 <style scoped>
 .container {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 
 .main-content {
