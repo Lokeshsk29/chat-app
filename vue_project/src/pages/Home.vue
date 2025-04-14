@@ -1,12 +1,10 @@
 <template>
   <div class="container">
-    <SidebarPage :iconData = "sidebarIcondata"/>
+    <SidebarPage :iconData = "sidebarIcondata" @page-selected="set_currentPage" />
     <div class="main-content">
       <NavbarPage :isSidebar="isSidebarEnable" @toggleSidebar="toggleSidebar" />
-      <div class="content">
-        <h1>Welcome to Home Page</h1>
-        <p>{{ message }}</p>
-      </div>
+      <component :is="components[currentPage]" />
+     
     </div>
   </div>
 </template>
@@ -15,54 +13,69 @@
 import { ref, onMounted } from 'vue';
 import SidebarPage from './SidebarPage.vue';
 import NavbarPage from './NavbarPage.vue';
-import { get_django_data } from '@/utils/api';
+import JobsPage from './JobsPage.vue';
+import MainHomePage from './MainHomePage.vue';
+
+
+
+const currentPage = ref('MainHomePage');
+
+// ChatPage, WeatherPage, SettingsPage
+
+const components = { MainHomePage,JobsPage };
+
 
 const message = ref('Loading...');
 let sidebarIcondata = ref([
   {
   name: 'Home',
   icon: 'home',
+  component: MainHomePage
   },
   {
   name: 'Chat-Box',
   icon: 'home',
+  component: JobsPage
   },
   {
   name: 'Weather Data',
   icon: 'home',
+  component: MainHomePage
   },
   {
   name: 'Web Settings',
   icon: 'home',
+  component: MainHomePage
   },
   {
   name: 'Web Settings',
   icon: 'home',
+  component: MainHomePage
   },
   {
   name: 'Web Settings',
   icon: 'home',
+  component: MainHomePage
   },
   {
   name: 'Web Settings',
   icon: 'home',
+  component: MainHomePage
   }
 ])
 
-async function callable() {
-  try {
-    const response = await get_django_data({ path: '/api/test/' });
-    message.value = response.message;
-  } catch (error) {
-    message.value = 'Error fetching data!';
-  }
+
+function set_currentPage(value) {
+  // console.log("home page ",currentPage.value);
+  currentPage.value = value;
+  // console.log("set_currentPage ",currentPage.value);
+  
+
 }
 
 
 
-onMounted(() => {
-  callable();
-});
+
 </script>
 
 <style scoped>

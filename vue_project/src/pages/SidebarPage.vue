@@ -1,6 +1,7 @@
 <template>
   <div class="main-sidebar" :class="{ expanded: isSidebarEnable }">
-    <div class="user-panel" v-for="i in iconData" :key="i.name">
+    <div class="user-panel" v-for="i in iconData" :key="i.name" @click = "load_respectivePages(i.component.__name)">
+      <!-- {{ i.component.__name }} -->
       <div class="image">
         <img src="https://ui-avatars.com/api/?name=John+Doe&size=96&background=random&color=fff" alt="User Image" />
       </div>
@@ -25,6 +26,7 @@ import { ref } from 'vue';
 
 let isSidebarEnable = ref(false);
 
+const emit = defineEmits(['page-selected']);
 defineProps({
   iconData: {
     type: Object,
@@ -37,6 +39,13 @@ defineProps({
 
 function toggleSidebar() {
   isSidebarEnable.value = !isSidebarEnable.value;
+}
+
+
+function load_respectivePages(component) {
+  console.log("dd",component);
+  
+  emit('page-selected', component);
 }
 </script>
 
